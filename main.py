@@ -4,6 +4,12 @@ def print_list(L):
         print(output)
 
 
+def print_with_index(L):
+    for i in range(0, len (L)):
+        output = "{}: {}".format(i, L[i][0])
+        print(output)
+
+
 def sandwich_list():
     my_list = [
         ["Halloumi and apricot jam sandwich", 15.95],
@@ -19,6 +25,6 @@ def sandwich_list():
         # ["Fish finger sandwich with Nordic dill salsa", 15.95],
         # ["Grilled cheddar and jalapeño popper sandwich", 15.95]
     ]
-    print_list(my_list)
+    print_with_index(my_list)
 
 sandwich_list()
