@@ -1,16 +1,33 @@
 def print_list(L):
-    for i in range (0, len(L)):
+    for i in range(0, len(L)):
         output = "{} {}".format(L[i][0], L[i][1])
         print(output)
 
 
 def print_with_index(L):
-    for i in range(0, len (L)):
+    for i in range(0, len(L)):
         output = "{}: {}".format(i, L[i][0])
         print(output)
 
 
+def add_sandwich(L,O):
+    print_with_index(L)
+    order = int(input("Enter the index number of the sandwich ordered -> "))
+    sandwich = L[order]
+    name = sandwich[0]
+    price = sandwich[1]
+
+    amount = int(input("Amount of sandwiches -> "))
+    new_list = [name, price, amount]
+    O.append(new_list)
+    output = "{} {} have been added to the order".format(amount, name)
+    print(output)
+
+
+
+
 def sandwich_list():
+    order_list = []
     my_list = [
         ["Halloumi and apricot jam sandwich", 15.95],
         ["Banh mi with five-spice crispy pork belly, pickled carrot, chilli, coriander and cucumber", 18.95],
@@ -25,6 +42,6 @@ def sandwich_list():
         # ["Fish finger sandwich with Nordic dill salsa", 15.95],
         # ["Grilled cheddar and jalapeño popper sandwich", 15.95]
     ]
-    print_with_index(my_list)
+    add_sandwich(my_list, order_list)
 
 sandwich_list()
