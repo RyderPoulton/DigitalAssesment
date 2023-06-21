@@ -17,13 +17,17 @@ def add_sandwich(L,O):
     name = sandwich[0]
     price = sandwich[1]
     amount = int(input("Amount of sandwiches -> "))
-    new_list = [name, price, amount]
+    new_list = [amount, name, price]
     O.append(new_list)
     output = "{} {} have been added to the order".format(amount, name)
     print(output)
 
 def delete_order(L):
     L.clear()
+
+def edit_order(L):
+    print(L)
+
 
 def menu():
     order_list = []
@@ -65,6 +69,8 @@ def menu():
             delete_order(order_list)
             print("Order deleted\n"
                   "Start new order:")
+        elif choice == "E":
+            edit_order(order_list)
         elif choice == "Q":
             print("Program Ended")
             run == False
