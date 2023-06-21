@@ -22,6 +22,8 @@ def add_sandwich(L,O):
     output = "{} {} have been added to the order".format(amount, name)
     print(output)
 
+def delete_order(L):
+    L.clear()
 
 def menu():
     order_list = []
@@ -44,19 +46,25 @@ def menu():
     B: Add Sandwich
     C: Review Order
     D: Delete Order
-    D: Edit Order
-    E: Pick Up or Delivery
-    F: Complete Order
+    E: Edit Order
+    F: Pick Up or Delivery
+    G: Complete Order
     Q: Quit
     '''
     run = True
     while run == True:
         print(my_menu)
-        choice =  input("Enter choice -> ")
+        choice =  input("Enter choice -> ").upper()
         if choice == "A":
             print_list(my_list)
         elif choice == "B":
             add_sandwich(my_list,order_list)
+        elif choice == "C":
+            print(order_list)
+        elif choice == "D":
+            delete_order(order_list)
+            print("Order deleted\n"
+                  "Start new order:")
         elif choice == "Q":
             print("Program Ended")
             run == False
