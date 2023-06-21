@@ -23,7 +23,7 @@ def add_sandwich(L,O):
     print(output)
 
 
-def menu(L,O):
+def menu():
     order_list = []
     my_list = [
         ["Halloumi and apricot jam sandwich", 15.95],
@@ -50,17 +50,17 @@ def menu(L,O):
     Q: Quit
     '''
     run = True
-    if run == True:
+    while run == True:
         print(my_menu)
         choice =  input("Enter choice -> ")
         if choice == "A":
-            print_list(L)
+            print_list(my_list)
         elif choice == "B":
-            add_sandwich(L,O)
+            add_sandwich(my_list,order_list)
         elif choice == "Q":
             print("Program Ended")
-            run = False
+            run == False
         else:
             print("Error")
 
-menu(my_list, order_list)
+menu()
