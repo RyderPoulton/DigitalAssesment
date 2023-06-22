@@ -9,12 +9,14 @@ def print_with_index(L):
         output = "{}: {} Amount:{}".format(i, L[i][1], L[i][0])
         print(output)
 
+
 def print_order_with_index(L):
     for i in range(0, len(L)):
         output = "{}: {} {}".format(i, L[i][0], L[i][1])
         print(output)
 
-def add_sandwich(L,O):
+
+def add_sandwich(L, O):
     print_with_index(L)
     order = int(input("Enter the index number of the sandwich ordered -> "))
     sandwich = L[order]
@@ -26,17 +28,22 @@ def add_sandwich(L,O):
     output = "{} {} have been added to the order".format(amount, name)
     print(output)
 
+def review_order(L):
+    print_list(L)
+
 def delete_order(L):
     L.clear()
+
 
 def edit_order(L):
     print_order_with_index(L)
     index = int(input("What would you like to edit -> "))
     item = L[index]
-    change = int(input("How many would you like to add/remove -> "))
+    change = int(input("How many would you like to add/remove (use +/-) -> "))
     sandwich_amount = item[0] + change
     output = "{} {} have been ordered".format(sandwich_amount, item[1])
     print(output)
+
 
 def menu():
     order_list = []
@@ -47,7 +54,7 @@ def menu():
         # ["Sausage and egg sandwich", 14.95]
         # ["Smoked salmon deluxe", 15.95],
         # ["Ham sandwich in a French baguette", 16.95],
-         # ["Kiwi & Roo’s ‘lucky beef’ steak sandwich", 18.95],
+        # ["Kiwi & Roo’s ‘lucky beef’ steak sandwich", 18.95],
         # ["Buttermilk chicken, scotch bonnet jam, pickled cabbage and crispy shallots", 18.95],
         # ["Balik ekmek – griddled mackerel in a baguette with tomato, lettuce, onion, chilli and sumac", 18.95],
         # ["Milanese and gremolata panini", 16.95]
@@ -67,13 +74,13 @@ def menu():
     run = True
     while run == True:
         print(my_menu)
-        choice =  input("Enter choice -> ").upper()
+        choice = input("Enter choice -> ").upper()
         if choice == "A":
             print_list(my_list)
         elif choice == "B":
-            add_sandwich(my_list,order_list)
+            add_sandwich(my_list, order_list)
         elif choice == "C":
-            print(order_list)
+            review_order(order_list)
         elif choice == "D":
             delete_order(order_list)
             print("Order deleted\n"
