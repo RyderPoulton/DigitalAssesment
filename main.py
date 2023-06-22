@@ -6,9 +6,13 @@ def print_list(L):
 
 def print_with_index(L):
     for i in range(0, len(L)):
-        output = "{}: {}".format(i, L[i][0])
+        output = "{}: {} Amount:{}".format(i, L[i][1], L[i][0])
         print(output)
 
+def print_order_with_index(L):
+    for i in range(0, len(L)):
+        output = "{}: {} {}".format(i, L[i][0], L[i][1])
+        print(output)
 
 def add_sandwich(L,O):
     print_with_index(L)
@@ -26,7 +30,7 @@ def delete_order(L):
     L.clear()
 
 def edit_order(L):
-    print_with_index(L)
+    print_order_with_index(L)
     index = int(input("What would you like to edit -> "))
     item = L[index]
     change = int(input("How many would you like to add/remove -> "))
