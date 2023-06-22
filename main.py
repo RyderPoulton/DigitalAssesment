@@ -4,6 +4,12 @@ def print_list(L):
         print(output)
 
 
+def print_order_list(L):
+    for i in range(0, len(L)):
+        output = "{} {} {}".format(L[i][0], L[i][1], L[i][2])
+        print(output)
+
+
 def print_with_index(L):
     for i in range(0, len(L)):
         output = "{}: {} Amount:{}".format(i, L[i][1], L[i][0])
@@ -28,8 +34,12 @@ def add_sandwich(L, O):
     output = "{} {} have been added to the order".format(amount, name)
     print(output)
 
+
 def review_order(L):
-    print_list(L)
+    for i in range(0, len(L)):
+        print_order_list(L)
+        total = L[i][2]
+        print(total)
 
 def delete_order(L):
     L.clear()
@@ -92,5 +102,6 @@ def menu():
             run == False
         else:
             print("Error")
+
 
 menu()
