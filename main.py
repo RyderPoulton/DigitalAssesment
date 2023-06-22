@@ -26,8 +26,13 @@ def delete_order(L):
     L.clear()
 
 def edit_order(L):
-    print(L)
-
+    print_with_index(L)
+    index = int(input("What would you like to edit -> "))
+    item = L[index]
+    change = int(input("How many would you like to add/remove -> "))
+    sandwich_amount = item[0] + change
+    output = "{} {} have been ordered".format(sandwich_amount, item[1])
+    print(output)
 
 def menu():
     order_list = []
