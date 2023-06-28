@@ -57,7 +57,15 @@ def edit_order(L):
 
 def delivery_option():
     option = input("Pick up (p) or delivery (d) -> ").lower()
+    customer = input("Customer name ->")
     if option == "p":
+        pick_up_list = customer
+    elif option == "d":
+        address = input("Enter address -> ")
+        number = input("Enter phone number")
+        delivery_list = (customer, address, number)
+    else:
+        print("Error")
 
 
 def menu():
