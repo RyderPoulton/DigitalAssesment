@@ -36,9 +36,16 @@ def add_sandwich(L, O):
     print(output)
 
 
-def review_order(L):
-    for i in range(0, len(L)):
-        print_order_list(L)
+def review_order(L, O):
+    print_order_list(O)
+    if len(L) == 3:
+        customer_details = "Name: {}\nAdress: {}\nPhone Number: {}".format(L[0], L[1], L[2])
+        print(customer_details)
+    elif len(L) == 1:
+        customer_details = "Name: {}".format(L[0])
+        print(customer_details)
+    else:
+        print("Error")
 
 
 def delete_order(L):
@@ -57,13 +64,15 @@ def edit_order(L):
 
 def delivery_option(L):
     option = input("Pick up (p) or delivery (d) -> ").lower()
-    customer = input("Customer name ->")
+    customer = input("Customer name -> ")
     if option == "p":
-        L = customer
+        L.append(customer)
     elif option == "d":
         address = input("Enter address -> ")
-        number = input("Enter phone number ->")
-        L = (customer, address, number)
+        number = input("Enter phone number -> ")
+        L.append(customer)
+        L.append(address)
+        L.append(number)
     else:
         print("Error")
 
@@ -104,7 +113,7 @@ def menu():
         elif choice == "B":
             add_sandwich(my_list, order_list)
         elif choice == "C":
-            review_order(order_list)
+            review_order(delivery_list, order_list)
         elif choice == "D":
             delete_order(order_list)
             print("Order deleted\n"
