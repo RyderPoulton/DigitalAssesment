@@ -39,17 +39,20 @@ def add_sandwich(L, O):
 def review_order(L, O):
     print_order_list(O)
     if len(L) == 3:
-        customer_details = "Name: {}\nAdress: {}\nPhone Number: {}".format(L[0], L[1], L[2])
+        customer_details = "Name: {}\nAddress: {}\nPhone Number: {}".format(L[0], L[1], L[2])
         print(customer_details)
     elif len(L) == 1:
         customer_details = "Name: {}".format(L[0])
         print(customer_details)
+    elif len(L) == 0:
+        print("There is nothing here")
     else:
         print("Error")
 
 
-def delete_order(L):
+def delete_order(L, O):
     L.clear()
+    O.clear()
 
 
 def edit_order(L):
@@ -63,7 +66,7 @@ def edit_order(L):
 
 
 def delivery_option(L):
-    option = input("Pick up (p) or delivery (d) -> ").lower()
+    option = input("Pick up (p) or delivery(costs $3) (d) -> ").lower()
     customer = input("Customer name -> ")
     if option == "p":
         L.append(customer)
@@ -75,6 +78,10 @@ def delivery_option(L):
         L.append(number)
     else:
         print("Error")
+
+
+def complete_order():
+    print("Order Complete")
 
 
 def menu():
@@ -115,13 +122,15 @@ def menu():
         elif choice == "C":
             review_order(delivery_list, order_list)
         elif choice == "D":
-            delete_order(order_list)
+            delete_order(order_list, delivery_list)
             print("Order deleted\n"
                   "Start new order:")
         elif choice == "E":
             edit_order(order_list)
         elif choice == "F":
             delivery_option(delivery_list)
+        elif choice == "G":
+            complete_order()
         elif choice == "Q":
             print("Program Ended")
             run = False
