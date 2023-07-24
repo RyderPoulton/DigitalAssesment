@@ -66,7 +66,7 @@ def edit_order(L):
 
 
 def delivery_option(L):
-    option = input("Pick up (p) or delivery(costs $3) (d) -> ").lower()
+    option = input("Pick up: p or delivery($3 charge): d -> ").lower()
     customer = input("Customer name -> ")
     if option == "p":
         L.append(customer)
