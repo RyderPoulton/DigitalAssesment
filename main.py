@@ -55,20 +55,21 @@ def edit_order(L):
     print(output)
 
 
-def delivery_option():
+def delivery_option(L):
     option = input("Pick up (p) or delivery (d) -> ").lower()
     customer = input("Customer name ->")
     if option == "p":
-        pick_up_list = customer
+        L = customer
     elif option == "d":
         address = input("Enter address -> ")
-        number = input("Enter phone number")
-        delivery_list = (customer, address, number)
+        number = input("Enter phone number ->")
+        L = (customer, address, number)
     else:
         print("Error")
 
 
 def menu():
+    delivery_list = []
     order_list = []
     my_list = [
         ["Halloumi and apricot jam sandwich", 15.95],
@@ -110,6 +111,8 @@ def menu():
                   "Start new order:")
         elif choice == "E":
             edit_order(order_list)
+        elif choice == "F":
+            delivery_option(delivery_list)
         elif choice == "Q":
             print("Program Ended")
             run = False
