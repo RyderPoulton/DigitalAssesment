@@ -36,10 +36,10 @@ def add_sandwich(L, O):
         if amount > 5:
             print("Too many sandwiches")
         else:
-         new_list = [amount, name, price]
-         O.append(new_list)
-         output = "{} {} have been added to the order".format(amount, name)
-        print(output)
+            new_list = [amount, name, price]
+            O.append(new_list)
+            output = "{} {} have been added to the order".format(amount, name)
+            print(output)
 
 
 def review_order(L, O):
@@ -96,6 +96,7 @@ def complete_order(L, O):
         print("Error")
 
 
+
 def menu():
     delivery_list = []
     order_list = []
@@ -142,7 +143,7 @@ def menu():
         elif choice == "F":
             delivery_option(delivery_list)
         elif choice == "G":
-            complete_order()
+            complete_order(order_list, delivery_list)
         elif choice == "Q":
             print("Program Ended")
             run = False
