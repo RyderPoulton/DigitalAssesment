@@ -22,9 +22,11 @@ def print_order_with_index(L):
         output = "{}: {} {}".format(i, L[i][0], L[i][1])
         print(output)
 
+
 def receipt(L, O, Z):
     print_order_list(L)
-
+    print(Z)
+    print(O)
 
 
 def add_sandwich(L, O, Z):
@@ -104,9 +106,8 @@ def complete_order(L, O):
         print("Nothing in the order")
 
 
-
 def menu():
-    total_list= []
+    total_list = []
     delivery_list = []
     order_list = []
     my_list = [
@@ -150,7 +151,7 @@ def menu():
         elif choice == "E":
             edit_order(order_list)
         elif choice == "F":
-            delivery_option(delivery_list)
+            delivery_option(delivery_list, total_list)
         elif choice == "G":
             complete_order(order_list, delivery_list)
             receipt(order_list, delivery_list, total_list)
