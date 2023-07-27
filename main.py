@@ -22,6 +22,10 @@ def print_order_with_index(L):
         output = "{}: {} {}".format(i, L[i][0], L[i][1])
         print(output)
 
+def receipt(L, O, Z):
+    print_order_list(L)
+
+
 
 def add_sandwich(L, O, Z):
     print_with_index(L)
@@ -44,8 +48,9 @@ def add_sandwich(L, O, Z):
             Z.append(total)
 
 
-def review_order(L, O):
+def review_order(L, O, Z):
     print_order_list(O)
+    print(Z)
     if len(L) == 3:
         customer_details = "Name: {}\nAddress: {}\nPhone Number: {}".format(L[0], L[1], L[2])
         print(customer_details)
@@ -73,7 +78,7 @@ def edit_order(L):
     print(output)
 
 
-def delivery_option(L):
+def delivery_option(L, Z):
     option = input("Pick up: p or delivery($3 charge): d -> ").lower()
     customer = input("Customer name -> ")
     if option == "p":
@@ -84,6 +89,7 @@ def delivery_option(L):
         L.append(customer)
         L.append(address)
         L.append(number)
+        Z.append(3)
     else:
         print("Error")
 
@@ -136,7 +142,7 @@ def menu():
         elif choice == "B":
             add_sandwich(my_list, order_list, total_list)
         elif choice == "C":
-            review_order(delivery_list, order_list)
+            review_order(delivery_list, order_list, total_list)
         elif choice == "D":
             delete_order(order_list, delivery_list)
             print("Order deleted\n"
@@ -147,6 +153,7 @@ def menu():
             delivery_option(delivery_list)
         elif choice == "G":
             complete_order(order_list, delivery_list)
+            receipt(order_list, delivery_list, total_list)
         elif choice == "Q":
             print("Program Ended")
             run = False
