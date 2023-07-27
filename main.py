@@ -23,7 +23,7 @@ def print_order_with_index(L):
         print(output)
 
 
-def add_sandwich(L, O):
+def add_sandwich(L, O, Z):
     print_with_index(L)
     order = int(input("Enter the index number of the sandwich ordered -> "))
     if order in L:
@@ -40,6 +40,8 @@ def add_sandwich(L, O):
             O.append(new_list)
             output = "{} {} have been added to the order".format(amount, name)
             print(output)
+            total = amount * price
+            Z.append(total)
 
 
 def review_order(L, O):
@@ -91,13 +93,14 @@ def complete_order(L, O):
         if len(O) >= 1:
             print("Order Complete")
         else:
-            print("Error")
+            print("No customer details")
     else:
-        print("Error")
+        print("Nothing in the order")
 
 
 
 def menu():
+    total_list= []
     delivery_list = []
     order_list = []
     my_list = [
@@ -131,7 +134,7 @@ def menu():
         if choice == "A":
             print_list(my_list)
         elif choice == "B":
-            add_sandwich(my_list, order_list)
+            add_sandwich(my_list, order_list, total_list)
         elif choice == "C":
             review_order(delivery_list, order_list)
         elif choice == "D":
