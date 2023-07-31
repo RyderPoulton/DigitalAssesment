@@ -47,7 +47,8 @@ def add_sandwich(L, O, Z):
             output = "{} {} have been added to the order".format(amount, name)
             print(output)
             total = amount * price
-            Z.append(total)
+            for i in range(0, len(Z)):
+                Z[i][0] += total
 
 
 def review_order(L, O, Z):
@@ -91,7 +92,8 @@ def delivery_option(L, Z):
         L.append(customer)
         L.append(address)
         L.append(number)
-        Z.append(3)
+        for i in range(0, len(Z)):
+            Z[i][0] += 3
     else:
         print("Error")
 
@@ -107,7 +109,7 @@ def complete_order(L, O):
 
 
 def menu():
-    total_list = []
+    total = [0]
     delivery_list = []
     order_list = []
     my_list = [
@@ -141,9 +143,9 @@ def menu():
         if choice == "A":
             print_list(my_list)
         elif choice == "B":
-            add_sandwich(my_list, order_list, total_list)
+            add_sandwich(my_list, order_list, total)
         elif choice == "C":
-            review_order(delivery_list, order_list, total_list)
+            review_order(delivery_list, order_list, total)
         elif choice == "D":
             delete_order(order_list, delivery_list)
             print("Order deleted\n"
@@ -151,10 +153,10 @@ def menu():
         elif choice == "E":
             edit_order(order_list)
         elif choice == "F":
-            delivery_option(delivery_list, total_list)
+            delivery_option(delivery_list, total)
         elif choice == "G":
             complete_order(order_list, delivery_list)
-            receipt(order_list, delivery_list, total_list)
+            receipt(order_list, delivery_list, total)
         elif choice == "Q":
             print("Program Ended")
             run = False
