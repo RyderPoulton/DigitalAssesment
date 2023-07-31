@@ -47,8 +47,7 @@ def add_sandwich(L, O, Z):
             output = "{} {} have been added to the order".format(amount, name)
             print(output)
             total = amount * price
-            for i in range(0, len(Z)):
-                Z[i][0] += total
+            Z.append(total)
 
 
 def review_order(L, O, Z):
@@ -92,8 +91,7 @@ def delivery_option(L, Z):
         L.append(customer)
         L.append(address)
         L.append(number)
-        for i in range(0, len(Z)):
-            Z[i][0] += 3
+        Z.append(3)
     else:
         print("Error")
 
