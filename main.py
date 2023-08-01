@@ -56,7 +56,7 @@ def review_order(L, O, Z):
     print_order_list(O)
     if len(L) == 3:
         print("Delivery cost $3")
-        output = "Total: ${}".format(Z)
+        output = "Total: ${}".format(Z[0])
         print(output)
         customer_details = "Name: {}\nAddress: {}\nPhone Number: {}".format(L[0], L[1], L[2])
         print(customer_details)
@@ -71,9 +71,10 @@ def review_order(L, O, Z):
         print("Error")
 
 
-def delete_order(L, O):
+def delete_order(L, O, Z):
     L.clear()
     O.clear()
+    Z.clear()
 
 
 def edit_order(L):
@@ -133,24 +134,25 @@ def menu():
         ["Grilled cheddar and jalapeño popper sandwich", 15.95]
      ]
     my_menu = '''
-    A: Print Menu
-    B: Add Sandwich
-    C: Review Order
+    P: Print Menu
+    A: Add Sandwich
+    R: Review Order
     D: Delete Order
     E: Edit Order
-    F: Pick Up or Delivery
-    G: Complete Order
+    K: Edit Customer Details
+    C: Pick Up or Delivery
+    F: Complete Order
     Q: Quit
     '''
     run = True
     while run == True:
         print(my_menu)
         choice = input("Enter choice -> ").upper()
-        if choice == "A":
+        if choice == "P":
             print_list(my_list)
-        elif choice == "B":
+        elif choice == "A":
             add_sandwich(my_list, order_list, total)
-        elif choice == "C":
+        elif choice == "R":
             review_order(delivery_list, order_list, total)
         elif choice == "D":
             delete_order(order_list, delivery_list)
@@ -158,9 +160,11 @@ def menu():
                   "Start new order:")
         elif choice == "E":
             edit_order(order_list)
-        elif choice == "F":
+        elif choice == "K":
+            print("Customer Details")
+        elif choice == "C":
             delivery_option(delivery_list, total)
-        elif choice == "G":
+        elif choice == "F":
             complete_order(order_list, delivery_list)
             receipt(order_list, delivery_list, total)
         elif choice == "Q":
