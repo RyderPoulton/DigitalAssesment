@@ -54,11 +54,15 @@ def add_sandwich(L, O, Z):
 
 def review_order(L, O, Z):
     print_order_list(O)
-    print(Z)
     if len(L) == 3:
+        print("Delivery cost $3")
+        output = "Total: ${}".format(Z)
+        print(output)
         customer_details = "Name: {}\nAddress: {}\nPhone Number: {}".format(L[0], L[1], L[2])
         print(customer_details)
     elif len(L) == 1:
+        output = "Total: {}".format(Z)
+        print(output)
         customer_details = "Name: {}".format(L[0])
         print(customer_details)
     elif len(L) == 0:
