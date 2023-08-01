@@ -47,7 +47,9 @@ def add_sandwich(L, O, Z):
             output = "{} {} have been added to the order".format(amount, name)
             print(output)
             total = amount * price
-            Z.append(total)
+            new_total = Z[0] + total
+            rounded_total = round(new_total, 2)
+            Z[0] = rounded_total
 
 
 def review_order(L, O, Z):
@@ -91,7 +93,8 @@ def delivery_option(L, Z):
         L.append(customer)
         L.append(address)
         L.append(number)
-        Z.append(3)
+        total = Z[0] + 3
+        Z[0] = total
     else:
         print("Error")
 
@@ -110,6 +113,7 @@ def menu():
     total = [0]
     delivery_list = []
     order_list = []
+    total_sandwiches = [0]
     my_list = [
         ["Halloumi and apricot jam sandwich", 15.95],
         ["Banh mi with five-spice crispy pork belly, pickled carrot, chilli, coriander and cucumber", 18.95],
