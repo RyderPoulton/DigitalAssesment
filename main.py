@@ -74,7 +74,7 @@ def review_order(L, O, Z):
 def delete_order(L, O, Z):
         L.clear()
         O.clear()
-        Z.clear()
+        Z[0] = 0
 
 
 def edit_order(L):
