@@ -53,7 +53,12 @@ def add_sandwich(L, O, Z):
 
 
 def review_order(L, O, Z):
-    print_order_list(O)
+    if len(O) >= 1:
+        print_order_list(O)
+    elif len(O) == 0:
+        print("There is nothing in the order")
+    else:
+        print("Error")
     if len(L) == 3:
         print("Delivery cost $3")
         output = "Total: ${}".format(Z[0])
@@ -72,8 +77,10 @@ def review_order(L, O, Z):
 
 
 def delete_order(L, O, Z):
+    # Clear customer details and order
     L.clear()
     O.clear()
+    # Set total cost to 0
     Z[0] = 0
 
 
@@ -84,8 +91,13 @@ def edit_order(L):
         item = L[index]
         change = int(input("How many would you like to add/remove (use +/-) -> "))
         sandwich_amount = item[0] + change
-        output = "{} {} have been ordered".format(sandwich_amount, item[1])
-        print(output)
+        if sandwich_amount == 0:
+            print("{} has been removed from the order".format(item[1]))
+        elif sandwich_amount >= 1:
+            output = "{} {} have been ordered".format(sandwich_amount, item[1])
+            print(output)
+        else:
+            print("Error")
     elif len(L) == 0:
         print("There is nothing in the order")
     else:
