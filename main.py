@@ -92,15 +92,41 @@ def edit_order(L):
         print("Error")
 
 
-def edit_customer_details(L):
+def edit_customer_details(L, Z):
     if len(L) > 0:
         print(L)
         if len(L) == 3:
-            customer_details = "Name: {}\nAddress: {}\nPhone Number: {}".format(L[0], L[1], L[2])
+            customer_details = "Name: {}\nAddress: {}\nPhone Number: {}\n Delivery or Pickup: Delivery".format(L[0], L[1], L[2])
             print(customer_details)
+            list = ["Name", "Address", "Phone Number", "Change to pickup"]
+            output = "0: {}\n1: {}\n2: {}\n3: {}".format(list[0], list[1], list[2], list[3])
+            print(output)
+            customer = L[0]
+            L.clear(L)
+            L.append(customer)
+            total = Z[0] - 3
+            Z[0] = total
         elif len(L) == 1:
-            customer_details = "Name: {}".format(L[0])
+            customer_details = "Name: {}\n Delivery or Pickup: Pickup".format(L[0])
             print(customer_details)
+            list = ["Name", "Change to delivery"]
+            output = "0: {}\n1: {}".format(list[0], list[1])
+            print(output)
+            index = int(input("Enter index number -> "))
+            if index == 0:
+                new_name = input("Enter new name ->")
+                L[0]= new_name
+            elif index == 1:
+                customer = L[0]
+                L.clear(L)
+                address = input("Enter address -> ")
+                number = input("Enter phone number -> ")
+                L.append(customer)
+                L.append(address)
+                L.append(number)
+                total = Z[0] + 3
+                Z[0] = total
+
         else:
             print("Error")
     elif len(L) == 0:
