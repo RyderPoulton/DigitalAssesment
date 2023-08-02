@@ -13,7 +13,7 @@ def print_order_list(L):
 
 def print_with_index(L):
     for i in range(0, len(L)):
-        output = "{}: {} Amount:{}".format(i, L[i][1], L[i][0])
+        output = "{}: {} {}".format(i, L[i][0], L[i][1])
         print(output)
 
 
@@ -72,19 +72,41 @@ def review_order(L, O, Z):
 
 
 def delete_order(L, O, Z):
-    L.clear()
-    O.clear()
-    Z.clear()
+        L.clear()
+        O.clear()
+        Z.clear()
 
 
 def edit_order(L):
-    print_order_with_index(L)
-    index = int(input("What would you like to edit -> "))
-    item = L[index]
-    change = int(input("How many would you like to add/remove (use +/-) -> "))
-    sandwich_amount = item[0] + change
-    output = "{} {} have been ordered".format(sandwich_amount, item[1])
-    print(output)
+    if len(L) > 0:
+        print_order_with_index(L)
+        index = int(input("What would you like to edit -> "))
+        item = L[index]
+        change = int(input("How many would you like to add/remove (use +/-) -> "))
+        sandwich_amount = item[0] + change
+        output = "{} {} have been ordered".format(sandwich_amount, item[1])
+        print(output)
+    elif len(L) == 0:
+        print("There is nothing in the order")
+    else:
+        print("Error")
+
+
+def edit_customer_details(L):
+    if len(L) > 0:
+        print(L)
+        if len(L) == 3:
+            customer_details = "Name: {}\nAddress: {}\nPhone Number: {}".format(L[0], L[1], L[2])
+            print(customer_details)
+        elif len(L) == 1:
+            customer_details = "Name: {}".format(L[0])
+            print(customer_details)
+        else:
+            print("Error")
+    elif len(L) == 0:
+        print("No customer details")
+    else:
+        print("Error")
 
 
 def delivery_option(L, Z):
@@ -155,7 +177,7 @@ def menu():
         elif choice == "R":
             review_order(delivery_list, order_list, total)
         elif choice == "D":
-            delete_order(order_list, delivery_list)
+            delete_order(order_list, delivery_list, total)
             print("Order deleted\n"
                   "Start new order:")
         elif choice == "E":
