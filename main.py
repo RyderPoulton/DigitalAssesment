@@ -94,7 +94,6 @@ def edit_order(L):
 
 def edit_customer_details(L, Z):
     if len(L) > 0:
-        print(L)
         if len(L) == 3:
             customer_details = "Name: {}\nAddress: {}\nPhone Number: {}\n Delivery or Pickup: Delivery".format(L[0], L[1], L[2])
             print(customer_details)
@@ -102,12 +101,12 @@ def edit_customer_details(L, Z):
             output = "0: {}\n1: {}\n2: {}\n3: {}".format(list[0], list[1], list[2], list[3])
             print(output)
             customer = L[0]
-            L.clear(L)
+            L.clear()
             L.append(customer)
             total = Z[0] - 3
             Z[0] = total
         elif len(L) == 1:
-            customer_details = "Name: {}\n Delivery or Pickup: Pickup".format(L[0])
+            customer_details = "Name: {}\nDelivery or Pickup: Pickup".format(L[0])
             print(customer_details)
             list = ["Name", "Change to delivery"]
             output = "0: {}\n1: {}".format(list[0], list[1])
@@ -118,7 +117,7 @@ def edit_customer_details(L, Z):
                 L[0]= new_name
             elif index == 1:
                 customer = L[0]
-                L.clear(L)
+                L.clear()
                 address = input("Enter address -> ")
                 number = input("Enter phone number -> ")
                 L.append(customer)
@@ -209,7 +208,7 @@ def menu():
         elif choice == "E":
             edit_order(order_list)
         elif choice == "K":
-            print("Customer Details")
+            edit_customer_details(delivery_list, total)
         elif choice == "C":
             delivery_option(delivery_list, total)
         elif choice == "F":
