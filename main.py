@@ -72,9 +72,9 @@ def review_order(L, O, Z):
 
 
 def delete_order(L, O, Z):
-        L.clear()
-        O.clear()
-        Z[0] = 0
+    L.clear()
+    O.clear()
+    Z[0] = 0
 
 
 def edit_order(L):
@@ -95,16 +95,28 @@ def edit_order(L):
 def edit_customer_details(L, Z):
     if len(L) > 0:
         if len(L) == 3:
-            customer_details = "Name: {}\nAddress: {}\nPhone Number: {}\n Delivery or Pickup: Delivery".format(L[0], L[1], L[2])
+            customer_details = "Name: {}\nAddress: {}\nPhone Number: {}\nDelivery/Pickup: Delivery".format(L[0], L[1], L[2])
             print(customer_details)
-            list = ["Name", "Address", "Phone Number", "Change to pickup"]
-            output = "0: {}\n1: {}\n2: {}\n3: {}".format(list[0], list[1], list[2], list[3])
+            output = "0: Name\n1: Address\n2: Phone Number\n3: Change to Pickup"
             print(output)
-            customer = L[0]
-            L.clear()
-            L.append(customer)
-            total = Z[0] - 3
-            Z[0] = total
+            integer = int(input("Index number -> "))
+            if integer == 0:
+                new_name = input("Enter new name -> ")
+                L[0] = new_name
+            elif integer == 1:
+                new_address = input("Enter new address -> ")
+                L[1] = new_address
+            elif integer == 2:
+                new_number = input("Enter new phone number -> ")
+                L[2] = new_number
+            elif integer == 3:
+                customer = L[0]
+                L.clear()
+                L.append(customer)
+                total = Z[0] - 3
+                Z[0] = total
+            else:
+                print("Error")
         elif len(L) == 1:
             customer_details = "Name: {}\nDelivery or Pickup: Pickup".format(L[0])
             print(customer_details)
@@ -114,7 +126,7 @@ def edit_customer_details(L, Z):
             index = int(input("Enter index number -> "))
             if index == 0:
                 new_name = input("Enter new name ->")
-                L[0]= new_name
+                L[0] = new_name
             elif index == 1:
                 customer = L[0]
                 L.clear()
