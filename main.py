@@ -23,12 +23,6 @@ def print_order_with_index(L):
         print(output)
 
 
-def receipt(L, O, Z):
-    print_order_list(L)
-    print(Z)
-    print(O)
-
-
 def add_sandwich(L, O, Z):
     print_with_index(L)
     order = int(input("Enter the index number of the sandwich ordered -> "))
@@ -55,23 +49,38 @@ def add_sandwich(L, O, Z):
 def review_order(L, O, Z):
     if len(O) >= 1:
         print_order_list(O)
+        if len(L) == 3:
+            print("Delivery cost: 3")
+            output = "Total: {}".format(Z[0])
+            print(output)
+            customer_details = "Name: {}\nAddress: {}\nPhone Number: {}".format(L[0], L[1], L[2])
+            print(customer_details)
+        elif len(L) == 1:
+            output = "Total: {}".format(Z)
+            print(output)
+            customer_details = "Name: {}".format(L[0])
+            print(customer_details)
+        elif len(L) == 0:
+            print("No customer details")
+            if len(L) == 3:
+                print("Delivery cost: 3")
+                output = "Total: {}".format(Z[0])
+                print(output)
+                customer_details = "Name: {}\nAddress: {}\nPhone Number: {}".format(L[0], L[1], L[2])
+                print(customer_details)
+            elif len(L) == 1:
+                output = "Total: {}".format(Z)
+                print(output)
+                customer_details = "Name: {}".format(L[0])
+                print(customer_details)
+            elif len(L) == 0:
+                print("No customer details")
+            else:
+                print("Error")
+        else:
+            print("Error")
     elif len(O) == 0:
         print("There is nothing in the order")
-    else:
-        print("Error")
-    if len(L) == 3:
-        print("Delivery cost $3")
-        output = "Total: ${}".format(Z[0])
-        print(output)
-        customer_details = "Name: {}\nAddress: {}\nPhone Number: {}".format(L[0], L[1], L[2])
-        print(customer_details)
-    elif len(L) == 1:
-        output = "Total: {}".format(Z)
-        print(output)
-        customer_details = "Name: {}".format(L[0])
-        print(customer_details)
-    elif len(L) == 0:
-        print("No customer details")
     else:
         print("Error")
 
@@ -132,8 +141,8 @@ def edit_customer_details(L, Z):
         elif len(L) == 1:
             customer_details = "Name: {}\nDelivery or Pickup: Pickup".format(L[0])
             print(customer_details)
-            list = ["Name", "Change to delivery"]
-            output = "0: {}\n1: {}".format(list[0], list[1])
+            my_list = ["Name", "Change to delivery"]
+            output = "0: {}\n1: {}".format(my_list[0], my_list[1])
             print(output)
             index = int(input("Enter index number -> "))
             if index == 0:
@@ -175,10 +184,20 @@ def delivery_option(L, Z):
         print("Error")
 
 
-def complete_order(L, O):
+def complete_order(L, O, Z):
     if len(L) >= 1:
         if len(O) >= 1:
-            print("Order Complete")
+            review_order(L, O, Z)
+            letter = input("Would you like to complete the order y/n ->").lower
+            if letter == y:
+                L.clear()
+                O.clear()
+                Z[0] = 0
+                print("Order complete\nStart new order:")
+            elif letter == n:
+                print("Continue order")
+            else:
+                print("Error")
         else:
             print("No customer details")
     else:
@@ -237,7 +256,6 @@ def menu():
             delivery_option(delivery_list, total)
         elif choice == "F":
             complete_order(order_list, delivery_list)
-            receipt(order_list, delivery_list, total)
         elif choice == "Q":
             print("Program Ended")
             run = False
