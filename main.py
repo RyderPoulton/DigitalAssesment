@@ -62,21 +62,6 @@ def review_order(L, O, Z):
             print(customer_details)
         elif len(L) == 0:
             print("No customer details")
-            if len(L) == 3:
-                print("Delivery cost: 3")
-                output = "Total: {}".format(Z[0])
-                print(output)
-                customer_details = "Name: {}\nAddress: {}\nPhone Number: {}".format(L[0], L[1], L[2])
-                print(customer_details)
-            elif len(L) == 1:
-                output = "Total: {}".format(Z)
-                print(output)
-                customer_details = "Name: {}".format(L[0])
-                print(customer_details)
-            elif len(L) == 0:
-                print("No customer details")
-            else:
-                print("Error")
         else:
             print("Error")
     elif len(O) == 0:
