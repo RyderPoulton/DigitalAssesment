@@ -23,18 +23,20 @@ def print_order_with_index(L):
         print(output)
 
 
-def add_sandwich(L, O, Z):
+def add_sandwich(L, O, Z, S):
     print_with_index(L)
     order = int(input("Enter the index number of the sandwich ordered -> "))
-    if order in L:
+    sandwich = L[order]
+    name = sandwich[0]
+    price = sandwich[1]
+    if name in O:
         print("There are {} {} in the order".format(L[0], L[1]))
     else:
-        sandwich = L[order]
-        name = sandwich[0]
-        price = sandwich[1]
         amount = int(input("Amount of sandwiches -> "))
         if amount > 5:
             print("Too many sandwiches")
+        elif S[0] + amount > 5:
+            print("There is already {} sandwiches ordered. Max of 5 sandwiches can be ordered.")
         else:
             new_list = [amount, name, price]
             O.append(new_list)
@@ -70,15 +72,17 @@ def review_order(L, O, Z):
         print("Error")
 
 
-def delete_order(L, O, Z):
+def delete_order(L, O, Z, S):
     # Clear customer details and order
     L.clear()
     O.clear()
     # Set total cost to 0
     Z[0] = 0
+    # Set total sandwiches ordered to 0
+    S[0] = 0
 
 
-def edit_order(L):
+def edit_order(L, Z, S):
     if len(L) > 0:
         print_order_with_index(L)
         index = int(input("What would you like to edit -> "))
@@ -87,9 +91,13 @@ def edit_order(L):
         sandwich_amount = item[0] + change
         if sandwich_amount == 0:
             print("{} has been removed from the order".format(item[1]))
-        elif sandwich_amount >= 1:
+        elif S[0] + sandwich_amount > 5:
+            print("Max of 5 sandwiches can be ordered")
+        elif sandwich_amount <= 5:
             output = "{} {} have been ordered".format(sandwich_amount, item[1])
             print(output)
+        elif sandwich_amount > 5:
+            print("Max of 5 sandwiches can be ordered")
         else:
             print("Error")
     elif len(L) == 0:
@@ -214,8 +222,8 @@ def menu():
     R: Review Order
     D: Delete Order
     E: Edit Order
-    K: Edit Customer Details
-    C: Pick Up or Delivery
+    C: Edit Customer Details
+    L: Pick Up or Delivery
     F: Complete Order
     Q: Quit
     '''
@@ -226,21 +234,21 @@ def menu():
         if choice == "P":
             print_list(my_list)
         elif choice == "A":
-            add_sandwich(my_list, order_list, total)
+            add_sandwich(my_list, order_list, total, total_sandwiches)
         elif choice == "R":
             review_order(delivery_list, order_list, total)
         elif choice == "D":
-            delete_order(order_list, delivery_list, total)
+            delete_order(order_list, delivery_list, total, total_sandwiches)
             print("Order deleted\n"
                   "Start new order:")
         elif choice == "E":
-            edit_order(order_list)
-        elif choice == "K":
-            edit_customer_details(delivery_list, total)
+            edit_order(order_list, total, total_sandwiches)
         elif choice == "C":
+            edit_customer_details(delivery_list, total)
+        elif choice == "L":
             delivery_option(delivery_list, total)
         elif choice == "F":
-            complete_order(order_list, delivery_list)
+            complete_order(order_list, delivery_list, total)
         elif choice == "Q":
             print("Program Ended")
             run = False
