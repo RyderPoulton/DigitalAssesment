@@ -29,25 +29,22 @@ def add_sandwich(L, O, Z, S):
     sandwich = L[order]
     name = sandwich[0]
     price = sandwich[1]
-    if name in O:
-        print("There are {} {} in the order".format(L[0], L[1]))
+    amount = int(input("Amount of sandwiches -> "))
+    if amount > 5:
+        print("Too many sandwiches")
+    elif S[0] + amount > 5:
+        print("There is already {} sandwiches ordered. Max of 5 sandwiches can be ordered.".format(S[0]))
     else:
-        amount = int(input("Amount of sandwiches -> "))
-        if amount > 5:
-            print("Too many sandwiches")
-        elif S[0] + amount > 5:
-            print("There is already {} sandwiches ordered. Max of 5 sandwiches can be ordered.")
-        else:
-            new_list = [amount, name, price]
-            O.append(new_list)
-            output = "{} {} have been added to the order".format(amount, name)
-            print(output)
-            total = amount * price
-            new_total = Z[0] + total
-            rounded_total = round(new_total, 2)
-            Z[0] = rounded_total
-            a = S[0] + amount
-            S[0] = a
+        new_list = [amount, name, price]
+        O.append(new_list)
+        output = "{} {} have been added to the order".format(amount, name)
+        print(output)
+        total = amount * price
+        new_total = Z[0] + total
+        rounded_total = round(new_total, 2)
+        Z[0] = rounded_total
+        a = S[0] + amount
+        S[0] = a
 
 
 def review_order(L, O, Z):
@@ -89,17 +86,19 @@ def edit_order(L, Z, S):
         print_order_with_index(L)
         index = int(input("What would you like to edit -> "))
         item = L[index]
-        change = int(input("How many would you like to add/remove (use +/-) -> "))
+        change = int(input("How many would you like to add/remove (use - to remove) -> "))
         sandwich_amount = item[0] + change
+        total_amount = S[0] + sandwich_amount
         if sandwich_amount == 0:
             print("{} has been removed from the order".format(item[1]))
-        elif S[0] + sandwich_amount > 5:
+            L.pop(index)
+            total = S[0] + change
+            S[0] = total
+        elif total_amount > 5:
             print("Max of 5 sandwiches can be ordered")
         elif sandwich_amount <= 5:
             output = "{} {} have been ordered".format(sandwich_amount, item[1])
             print(output)
-        elif sandwich_amount > 5:
-            print("Max of 5 sandwiches can be ordered")
         else:
             print("Error")
     elif len(L) == 0:
