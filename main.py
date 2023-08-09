@@ -183,12 +183,12 @@ def complete_order(L, O, Z):
         if len(O) >= 1:
             review_order(L, O, Z)
             letter = input("Would you like to complete the order y/n ->").lower
-            if letter == y:
+            if letter == 'y':
                 L.clear()
                 O.clear()
                 Z[0] = 0
                 print("Order complete\nStart new order:")
-            elif letter == n:
+            elif letter == 'n':
                 print("Continue order")
             else:
                 print("Error")
