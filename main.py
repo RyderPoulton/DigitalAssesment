@@ -46,6 +46,8 @@ def add_sandwich(L, O, Z, S):
             new_total = Z[0] + total
             rounded_total = round(new_total, 2)
             Z[0] = rounded_total
+            a = S[0] + amount
+            S[0] = a
 
 
 def review_order(L, O, Z):
