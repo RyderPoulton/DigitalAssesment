@@ -181,14 +181,14 @@ def delivery_option(L, Z):
 def complete_order(L, O, Z):
     if len(L) >= 1:
         if len(O) >= 1:
-            review_order(L, O, Z)
-            letter = input("Would you like to complete the order y/n ->").lower
-            if letter == 'y':
+            review_order(O, L, Z)
+            letter = input("Would you like to complete the order y/n -> ").upper
+            if letter == "Y":
                 L.clear()
                 O.clear()
                 Z[0] = 0
                 print("Order complete\nStart new order:")
-            elif letter == 'n':
+            elif letter == "N":
                 print("Continue order")
             else:
                 print("Error")
