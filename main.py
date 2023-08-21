@@ -94,6 +94,10 @@ def edit_order(L, Z, S):
             L.pop(index)
             total = S[0] + change
             S[0] = total
+            cost = item[2] * change
+            item[2] = cost
+            total_cost = Z + cost
+            Z = total_cost
         elif total_amount > 5:
             print("Max of 5 sandwiches can be ordered")
         elif sandwich_amount <= 5:
@@ -102,6 +106,10 @@ def edit_order(L, Z, S):
             new_amount = item[0] + change
             S[0] = total_amount
             item[0] = new_amount
+            cost = item[2] * change
+            item[2] = cost
+            total_cost = Z + cost
+            Z = total_cost
         else:
             print("Error")
     elif len(L) == 0:
