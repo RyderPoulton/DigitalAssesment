@@ -90,6 +90,7 @@ def edit_order(L, Z, S):
         print_order_with_index(L)
         index = int(input("What would you like to edit -> "))
         item = L[index]
+        print("There are {} {} ordered".format(item[0], item[1]))
         change = int(input("How many would you like to add/remove (use - to remove) -> "))
         sandwich_amount = item[0] + change
         total_amount = S[0] + change
@@ -101,21 +102,18 @@ def edit_order(L, Z, S):
             total = S[0] + change
             S[0] = total
             cost = item[2] * change
-            item[2] = cost
             total_cost = Z + cost
             Z = total_cost
         elif total_amount > 5:
             print("Max of 5 sandwiches can be ordered")
-        elif sandwich_amount <= 5:
+        elif change <= 5:
             output = "{} {} have been ordered".format(sandwich_amount, item[1])
             print(output)
             new_amount = item[0] + change
             S[0] = total_amount
             item[0] = new_amount
-            cost = item[2] * change
-            item[2] = cost
-            total_cost = Z + cost
-            Z = total_cost
+            cost = Z + (item[2] * change)
+            Z = cost
         else:
             print("Error")
     elif len(L) == 0:
