@@ -24,27 +24,31 @@ def print_order_with_index(L):
 
 
 def add_sandwich(L, O, Z, S):
-    print_with_index(L)
-    order = int(input("Enter the index number of the sandwich ordered -> "))
-    sandwich = L[order]
-    name = sandwich[0]
-    price = sandwich[1]
-    amount = int(input("Amount of sandwiches -> "))
-    if amount > 5:
-        print("Too many sandwiches")
-    elif S[0] + amount > 5:
-        print("There is already {} sandwiches ordered. Max of 5 sandwiches can be ordered.".format(S[0]))
-    else:
-        new_list = [amount, name, price]
-        O.append(new_list)
-        output = "{} {} have been added to the order".format(amount, name)
-        print(output)
-        total = amount * price
-        new_total = Z[0] + total
-        rounded_total = round(new_total, 2)
-        Z[0] = rounded_total
-        a = S[0] + amount
-        S[0] = a
+    if S[0] == 5:
+        print("5 sandwiches already ordered")
+    elif S[0] < 5:
+        print("{} sandwiches ordered, {} more can be ordered\n".format(S[0], 5 - S[0]))
+        print_with_index(L)
+        order = int(input("Enter the index number of the sandwich ordered -> "))
+        sandwich = L[order]
+        name = sandwich[0]
+        price = sandwich[1]
+        amount = int(input("Amount of sandwiches -> "))
+        if amount > 5:
+            print("Too many sandwiches")
+        elif S[0] + amount > 5:
+            print("There is already {} sandwiches ordered. Max of 5 sandwiches can be ordered.".format(S[0]))
+        else:
+            new_list = [amount, name, price]
+            O.append(new_list)
+            output = "{} {} have been added to the order".format(amount, name)
+            print(output)
+            total = amount * price
+            new_total = Z[0] + total
+            rounded_total = round(new_total, 2)
+            Z[0] = rounded_total
+            a = S[0] + amount
+            S[0] = a
 
 
 def review_order(L, O, Z):
@@ -89,6 +93,8 @@ def edit_order(L, Z, S):
         change = int(input("How many would you like to add/remove (use - to remove) -> "))
         sandwich_amount = item[0] + change
         total_amount = S[0] + change
+        if sandwich_amount < 0:
+            print("Negative amounts of sandwiches can not be ordered")
         if sandwich_amount == 0:
             print("{} has been removed from the order".format(item[1]))
             L.pop(index)
@@ -121,8 +127,8 @@ def edit_order(L, Z, S):
 def edit_customer_details(L, Z):
     if len(L) > 0:
         if len(L) == 3:
-            customer_details = "Name: {}\nAddress: {}\nPhone Number: {}\nDelivery/Pickup: Delivery".format(L[0], L[1], L[2])
-            print(customer_details)
+            details = "Name: {}\nAddress: {}\nPhone Number: {}\nDelivery/Pickup: Delivery".format(L[0], L[1], L[2])
+            print(details)
             output = "0: Name\n1: Address\n2: Phone Number\n3: Change to Pickup"
             print(output)
             integer = int(input("Index number -> "))
