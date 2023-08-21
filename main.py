@@ -88,7 +88,7 @@ def edit_order(L, Z, S):
         item = L[index]
         change = int(input("How many would you like to add/remove (use - to remove) -> "))
         sandwich_amount = item[0] + change
-        total_amount = S[0] + sandwich_amount
+        total_amount = S[0] + change
         if sandwich_amount == 0:
             print("{} has been removed from the order".format(item[1]))
             L.pop(index)
@@ -99,6 +99,9 @@ def edit_order(L, Z, S):
         elif sandwich_amount <= 5:
             output = "{} {} have been ordered".format(sandwich_amount, item[1])
             print(output)
+            new_amount = item[0] + change
+            S[0] = total_amount
+            item[0] = new_amount
         else:
             print("Error")
     elif len(L) == 0:
