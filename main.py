@@ -142,7 +142,12 @@ def edit_customer_details(L, Z):
                 L[1] = new_address
             elif integer == 2:
                 new_number = input("Enter new phone number -> ")
-                L[2] = new_number
+                if len(new_number) < 7:
+                    print("Phone number too short")
+                elif len(new_number) > 15:
+                    print("Phone number too long")
+                else:
+                    L[2] = new_number
             elif integer == 3:
                 customer = L[0]
                 L.clear()
@@ -166,11 +171,16 @@ def edit_customer_details(L, Z):
                 L.clear()
                 address = input("Enter address -> ")
                 number = input("Enter phone number -> ")
-                L.append(customer)
-                L.append(address)
-                L.append(number)
-                total = Z[0] + 3
-                Z[0] = total
+                if len(number) < 7:
+                    print("Phone number too short")
+                elif len(number) > 15:
+                    print("Phone number too long")
+                else:
+                    L.append(customer)
+                    L.append(address)
+                    L.append(number)
+                    total = Z[0] + 3
+                    Z[0] = total
 
         else:
             print("Error")
@@ -188,11 +198,16 @@ def delivery_option(L, Z):
     elif option == "d":
         address = input("Enter address -> ")
         number = input("Enter phone number -> ")
-        L.append(customer)
-        L.append(address)
-        L.append(number)
-        total = Z[0] + 3
-        Z[0] = total
+        if len(number) < 7:
+            print("Phone number too short")
+        elif len(number) > 15:
+            print("Phone number too long")
+        else:
+            L.append(customer)
+            L.append(address)
+            L.append(number)
+            total = Z[0] + 3
+            Z[0] = total
     else:
         print("Error")
 
