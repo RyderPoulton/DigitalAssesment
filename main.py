@@ -105,7 +105,7 @@ def edit_order(L, Z, S):
             cost = Z[0] + (item[2] * change)
             # round cost to 2 decimal places
             rounded_cost = round(cost, 2)
-            Z = rounded_cost
+            Z[0] = rounded_cost
         elif total_amount > 5:
             print("Max of 5 sandwiches can be ordered")
         elif change <= 5:
@@ -117,7 +117,7 @@ def edit_order(L, Z, S):
             cost = Z[0] + (item[2] * change)
             # round cost to 2 decimal places
             rounded_cost = round(cost, 2)
-            Z = rounded_cost
+            Z[0] = rounded_cost
         else:
             print("Error")
     elif len(L) == 0:
