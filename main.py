@@ -98,12 +98,14 @@ def edit_order(L, Z, S):
             print("Negative amounts of sandwiches can not be ordered")
         if sandwich_amount == 0:
             print("{} has been removed from the order".format(item[1]))
+            # remove item from order
             L.pop(index)
             total = S[0] + change
             S[0] = total
-            cost = item[2] * change
-            total_cost = Z + cost
-            Z = total_cost
+            cost = Z[0] + (item[2] * change)
+            # round cost to 2 decimal places
+            rounded_cost = round(cost, 2)
+            Z = rounded_cost
         elif total_amount > 5:
             print("Max of 5 sandwiches can be ordered")
         elif change <= 5:
@@ -112,8 +114,10 @@ def edit_order(L, Z, S):
             new_amount = item[0] + change
             S[0] = total_amount
             item[0] = new_amount
-            cost = Z + (item[2] * change)
-            Z = cost
+            cost = Z[0] + (item[2] * change)
+            # round cost to 2 decimal places
+            rounded_cost = round(cost, 2)
+            Z = rounded_cost
         else:
             print("Error")
     elif len(L) == 0:
