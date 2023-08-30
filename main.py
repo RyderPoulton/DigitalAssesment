@@ -191,30 +191,36 @@ def edit_customer_details(L, Z):
 
 
 def delivery_option(L, Z):
-    option = input("Pick up: p or delivery($3 charge): d -> ").lower()
-    customer = input("Customer name -> ")
-    if len(customer) < 2:
-        print("Name too short (2 Characters Min)")
-    elif len(customer) > 20:
-        print("Name too long (20 Characters Max)")
-    else:
-        if option == "p":
-            L.append(customer)
-        elif option == "d":
-            address = input("Enter address -> ")
-            number = input("Enter phone number -> ")
-            if len(number) < 7:
-                print("Phone number too short (7 Number Min)")
-            elif len(number) > 15:
-                print("Phone number too long (15 Number Max)")
-            else:
-                L.append(customer)
-                L.append(address)
-                L.append(number)
-                total = Z[0] + 3
-                Z[0] = total
+    if len(L) > 0:
+        print("Customer Details already entered")
+    elif len(L) == 0:
+        option = input("Pick up: p or delivery($3 charge): d -> ").lower()
+        customer = input("Customer name -> ")
+        if len(customer) < 2:
+            print("Name too short (2 Characters Min)")
+        elif len(customer) > 20:
+            print("Name too long (20 Characters Max)")
         else:
-            print("Error")
+            if option == "p":
+                L.append(customer)
+            elif option == "d":
+                address = input("Enter address -> ")
+                run = True
+                while run == True:
+                    number = input("Enter phone number -> ")
+                    if len(number) < 7:
+                        print("Phone number too short (7 Number Min)")
+                    elif len(number) > 15:
+                        print("Phone number too long (15 Number Max)")
+                    else:
+                        run = False
+                        L.append(customer)
+                        L.append(address)
+                        L.append(number)
+                        total = Z[0] + 3
+                        Z[0] = total
+            else:
+                print("Error")
 
 
 def complete_order(L, O, Z):
@@ -263,7 +269,7 @@ def menu():
     D: Delete Order
     E: Edit Order
     C: Edit Customer Details
-    L: Pick Up or Delivery
+    G: Get Customer Details (Pick Up/Delivery)
     F: Complete Order
     Q: Quit
     '''
@@ -285,7 +291,7 @@ def menu():
             edit_order(order_list, total, total_sandwiches)
         elif choice == "C":
             edit_customer_details(delivery_list, total)
-        elif choice == "L":
+        elif choice == "G":
             delivery_option(delivery_list, total)
         elif choice == "F":
             complete_order(order_list, delivery_list, total)
