@@ -193,36 +193,41 @@ def edit_customer_details(L, Z):
 def delivery_option(L, Z):
     option = input("Pick up: p or delivery($3 charge): d -> ").lower()
     customer = input("Customer name -> ")
-    if option == "p":
-        L.append(customer)
-    elif option == "d":
-        address = input("Enter address -> ")
-        number = input("Enter phone number -> ")
-        if len(number) < 7:
-            print("Phone number too short")
-        elif len(number) > 15:
-            print("Phone number too long")
-        else:
-            L.append(customer)
-            L.append(address)
-            L.append(number)
-            total = Z[0] + 3
-            Z[0] = total
+    if len(customer) < 2:
+        print("Name too short (2 Characters Min)")
+    elif len(customer) > 20:
+        print("Name too long (20 Characters Max)")
     else:
-        print("Error")
+        if option == "p":
+            L.append(customer)
+        elif option == "d":
+            address = input("Enter address -> ")
+            number = input("Enter phone number -> ")
+            if len(number) < 7:
+                print("Phone number too short (7 Number Min)")
+            elif len(number) > 15:
+                print("Phone number too long (15 Number Max)")
+            else:
+                L.append(customer)
+                L.append(address)
+                L.append(number)
+                total = Z[0] + 3
+                Z[0] = total
+        else:
+            print("Error")
 
 
 def complete_order(L, O, Z):
     if len(L) >= 1:
         if len(O) >= 1:
             review_order(O, L, Z)
-            letter = input("Would you like to complete the order y/n -> ").upper
-            if letter == "Y":
+            letter = input("Would you like to complete the order y/n -> ").lower
+            if letter == "y":
                 L.clear()
                 O.clear()
                 Z[0] = 0
                 print("Order complete\nStart new order:")
-            elif letter == "N":
+            elif letter == "n":
                 print("Continue order")
             else:
                 print("Error")
