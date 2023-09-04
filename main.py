@@ -229,7 +229,7 @@ def complete_order(L, O, Z):
     if len(L) >= 1:
         if len(O) >= 1:
             review_order(O, L, Z)
-            letter = input("Would you like to complete the order y/n -> ").lower
+            letter = input("Would you like to complete the order y/n -> ").lower()
             if letter == "y":
                 L.clear()
                 O.clear()
