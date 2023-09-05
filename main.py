@@ -36,7 +36,7 @@ def add_sandwich(L, O, Z, S):
         amount = int(input("Amount of sandwiches -> "))
         if amount > 5:
             print("Too many sandwiches")
-        if amount < 1:
+        elif amount < 1:
             print("Must order 1 or more sandwiches")
         elif S[0] + amount > 5:
             print("There is already {} sandwiches ordered. Max of 5 sandwiches can be ordered.".format(S[0]))
