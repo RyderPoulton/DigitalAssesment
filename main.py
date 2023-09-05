@@ -47,6 +47,7 @@ def add_sandwich(L, O, Z, S):
             print(output)
             total = amount * price
             new_total = Z[0] + total
+            # Round total to 2dp
             rounded_total = round(new_total, 2)
             Z[0] = rounded_total
             a = S[0] + amount
