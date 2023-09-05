@@ -99,7 +99,7 @@ def edit_order(L, Z, S):
         total_amount = S[0] + change
         if sandwich_amount < 0:
             print("Negative amounts of sandwiches can not be ordered")
-        if sandwich_amount == 0:
+        elif sandwich_amount == 0:
             print("{} has been removed from the order".format(item[1]))
             # remove item from order
             L.pop(index)
