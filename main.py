@@ -89,14 +89,24 @@ def delete_order(L, O, Z, S):
 
 
 def edit_order(L, Z, S):
+    """Edit the customer order
+
+    :param L: list (order_list)
+    :param Z: float (total cost of the order)
+    :param S: int (total sandwiches ordered)
+    :return: None
+    """
     if len(L) > 0:
         print_order_with_index(L)
+        # get item to edit
         index = int(input("What would you like to edit -> "))
         item = L[index]
         print("There are {} {} ordered".format(item[0], item[1]))
+        # get quantity to remove
         change = int(input("How many would you like to add/remove (use - to remove) -> "))
         sandwich_amount = item[0] + change
         total_amount = S[0] + change
+        # check cases and update where valid
         if sandwich_amount < 0:
             print("Negative amounts of sandwiches can not be ordered")
         elif sandwich_amount == 0:
@@ -184,7 +194,6 @@ def edit_customer_details(L, Z):
                     L.append(number)
                     total = Z[0] + 3
                     Z[0] = total
-
         else:
             print("Error")
     elif len(L) == 0:
