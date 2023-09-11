@@ -37,18 +37,22 @@ def add_sandwich(L, O, Z, S):
     elif S[0] < 5:
         print("{} sandwiches ordered, {} more can be ordered\n".format(S[0], 5 - S[0]))
         print_with_index(L)
+        # Get sandwich ordered
         order = int(input("Enter the index number of the sandwich ordered -> "))
         sandwich = L[order]
         name = sandwich[0]
         price = sandwich[1]
+        # Get amount of sandwiches ordered
         amount = int(input("Amount of sandwiches -> "))
         if amount > 5:
             print("Too many sandwiches")
         elif amount < 1:
             print("Must order 1 or more sandwiches")
+            # Limit sandwiches ordered to 5
         elif S[0] + amount > 5:
             print("There is already {} sandwiches ordered. Max of 5 sandwiches can be ordered.".format(S[0]))
         else:
+            # Add sandwich to order
             new_list = [amount, name, price]
             O.append(new_list)
             output = "{} {} have been added to the order".format(amount, name)
@@ -70,12 +74,16 @@ def review_order(L, O, Z):
     :param Z: float (total cost of the order)
     :return: None
     """
+    # Check if sandwiches in order
     if len(O) >= 1:
+        # Print list of sandwiches ordered with costs and quantities
         print_order_list(O)
         if len(L) == 3:
+            # Print total cost of order
             print("Delivery cost: 3")
             output = "Total: {}".format(Z[0])
             print(output)
+            # Print customer details
             customer_details = "Name: {}\nAddress: {}\nPhone Number: {}".format(L[0], L[1], L[2])
             print(customer_details)
         elif len(L) == 1:
@@ -169,12 +177,14 @@ def edit_customer_details(L, Z):
     :param Z: float (total cost of the order)
     :return: None
     """
+    # Check for customer details
     if len(L) > 0:
         if len(L) == 3:
             details = "Name: {}\nAddress: {}\nPhone Number: {}\nDelivery/Pickup: Delivery".format(L[0], L[1], L[2])
             print(details)
             output = "0: Name\n1: Address\n2: Phone Number\n3: Change to Pickup"
             print(output)
+            # Get item to edit
             integer = int(input("Index number -> "))
             if integer == 0:
                 new_name = input("Enter new name -> ")
@@ -190,6 +200,7 @@ def edit_customer_details(L, Z):
                     print("Phone number too long")
                 else:
                     L[2] = new_number
+            # Change delivery to pickup
             elif integer == 3:
                 customer = L[0]
                 L.clear()
@@ -199,6 +210,7 @@ def edit_customer_details(L, Z):
             else:
                 print("Error")
         elif len(L) == 1:
+            # Print customer details
             customer_details = "Name: {}\nDelivery or Pickup: Pickup".format(L[0])
             print(customer_details)
             my_list = ["Name", "Change to delivery"]
@@ -208,6 +220,7 @@ def edit_customer_details(L, Z):
             if index == 0:
                 new_name = input("Enter new name ->")
                 L[0] = new_name
+            # Change pickup to delivery
             elif index == 1:
                 customer = L[0]
                 L.clear()
@@ -241,33 +254,40 @@ def delivery_option(L, Z):
     if len(L) > 0:
         print("Customer Details already entered")
     elif len(L) == 0:
+        # Get pickup/delivery choice
         option = input("Pick up: p or delivery($3 charge): d -> ").lower()
-        customer = input("Customer name -> ")
-        if len(customer) < 2:
-            print("Name too short (2 Characters Min)")
-        elif len(customer) > 20:
-            print("Name too long (20 Characters Max)")
-        else:
-            if option == "p":
-                L.append(customer)
-            elif option == "d":
-                address = input("Enter address -> ")
-                run = True
-                while run == True:
-                    number = input("Enter phone number -> ")
-                    if len(number) < 7:
-                        print("Phone number too short (7 Number Min)")
-                    elif len(number) > 15:
-                        print("Phone number too long (15 Number Max)")
-                    else:
-                        run = False
-                        L.append(customer)
-                        L.append(address)
-                        L.append(number)
-                        total = Z[0] + 3
-                        Z[0] = total
+        # Get customer name (2 - 20 characters)
+        run = True
+        while run == True:
+            customer = input("Customer name -> ")
+            if len(customer) < 2:
+                print("Name too short (2 Characters Min)")
+            elif len(customer) > 20:
+                print("Name too long (20 Characters Max)")
             else:
-                print("Error")
+                run = False
+                if option == "p":
+                    L.append(customer)
+                elif option == "d":
+                    address = input("Enter address -> ")
+                    # Get customer phone number(7 - 15 digits)
+                    run = True
+                    while run == True:
+                        number = input("Enter phone number -> ")
+                        if len(number) < 7:
+                            print("Phone number too short (7 Number Min)")
+                        elif len(number) > 15:
+                            print("Phone number too long (15 Number Max)")
+                        else:
+                            run = False
+                            # Append customer details to list and add $3 to total for delivery
+                            L.append(customer)
+                            L.append(address)
+                            L.append(number)
+                            total = Z[0] + 3
+                            Z[0] = total
+                else:
+                    print("Error")
 
 
 def complete_order(L, O, Z):
@@ -278,9 +298,13 @@ def complete_order(L, O, Z):
     :param Z: float (total cost of the order)
     :return: None
     """
+    # Check for sandwiches in order
     if len(L) >= 1:
+        # Check for customer details
         if len(O) >= 1:
+            # Print order and customer details
             review_order(O, L, Z)
+            # Check if ready to complete order
             letter = input("Would you like to complete the order y/n -> ").lower()
             if letter == "y":
                 L.clear()
