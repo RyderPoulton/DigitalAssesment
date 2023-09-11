@@ -322,6 +322,10 @@ def complete_order(L, O, Z):
 
 
 def menu():
+    """Menu
+
+    :return: None
+    """
     total = [0]
     delivery_list = []
     order_list = []
@@ -354,25 +358,35 @@ def menu():
     run = True
     while run == True:
         print(my_menu)
+        # Get option
         choice = input("Enter choice -> ").upper()
+        # Print sandwich menu
         if choice == "P":
             print_list(my_list)
+            # Add sandwich to order
         elif choice == "A":
             add_sandwich(my_list, order_list, total, total_sandwiches)
+            # Review order
         elif choice == "R":
             review_order(delivery_list, order_list, total)
+            # Delete order
         elif choice == "D":
             delete_order(order_list, delivery_list, total, total_sandwiches)
             print("Order deleted\n"
                   "Start new order:")
+            # Edit order
         elif choice == "E":
             edit_order(order_list, total, total_sandwiches)
+            # Edit customer details
         elif choice == "C":
             edit_customer_details(delivery_list, total)
+            # Get customer details
         elif choice == "G":
             delivery_option(delivery_list, total)
+            # Complete order
         elif choice == "F":
             complete_order(order_list, delivery_list, total)
+            # Quit Program
         elif choice == "Q":
             print("Program Ended")
             run = False
