@@ -172,7 +172,6 @@ def edit_order(L, Z, S):
 
 def edit_customer_details(L, Z):
     """Edit customer details
-
     :param L: list (customer details)
     :param Z: float (total cost of the order)
     :return: None
@@ -187,67 +186,59 @@ def edit_customer_details(L, Z):
             # Get item to edit
             integer = int(input("Index number -> "))
             if integer == 0:
-            run = True
-            while run == True:
-                name = input("Customer name -> ")
-                if len(name) < 2:
-                    print("Name too short (2 Characters Min)")
-                elif len(name) > 20:
-                    print("Name too long (20 Characters Max)")
-                else:
-                    run = False
-                    L[0] = new_name
-                elif integer == 1:
-                    new_address = input("Enter new address -> ")
-                    L[1] = new_address
-                elif integer == 2:
-                    new_number = input("Enter new phone number -> ")
-                    if len(new_number) < 7:
-                        print("Phone number too short")
-                    elif len(new_number) > 15:
-                        print("Phone number too long")
-                    else:
-                        L[2] = new_number
-                # Change delivery to pickup
-                elif integer == 3:
-                    customer = L[0]
-                    L.clear()
-                    L.append(customer)
-                    total = Z[0] - 3
-                    Z[0] = total
-                else:
-                    print("Error")
-            elif len(L) == 1:
-                # Print customer details
-                customer_details = "Name: {}\nDelivery or Pickup: Pickup".format(L[0])
-                print(customer_details)
-                my_list = ["Name", "Change to delivery"]
-                output = "0: {}\n1: {}".format(my_list[0], my_list[1])
-                print(output)
-                index = int(input("Enter index number -> "))
-                if index == 0:
-                    new_name = input("Enter new name ->")
-                    L[0] = new_name
-                # Change pickup to delivery
-                elif index == 1:
-                    customer = L[0]
-                    L.clear()
-                    address = input("Enter address -> ")
-                    number = input("Enter phone number -> ")
-                    if len(number) < 7:
+                new_name = input("Enter new name -> ")
+                L[0] = new_name
+            elif integer == 1:
+                new_address = input("Enter new address -> ")
+                L[1] = new_address
+            elif integer == 2:
+                new_number = input("Enter new phone number -> ")
+                if len(new_number) < 7:
                     print("Phone number too short")
-                    elif len(number) > 15:
-                        print("Phone number too long")
-                    else:
-                        L.append(customer)
-                        L.append(address)
-                        L.append(number)
-                        total = Z[0] + 3
-                        Z[0] = total
+                elif len(new_number) > 15:
+                    print("Phone number too long")
+                else:
+                    L[2] = new_number
+            # Change delivery to pickup
+            elif integer == 3:
+                customer = L[0]
+                L.clear()
+                L.append(customer)
+                total = Z[0] - 3
+                Z[0] = total
             else:
                 print("Error")
-        elif len(L) == 0:
-            print("No customer details")
+        elif len(L) == 1:
+            # Print customer details
+            customer_details = "Name: {}\nDelivery or Pickup: Pickup".format(L[0])
+            print(customer_details)
+            my_list = ["Name", "Change to delivery"]
+            output = "0: {}\n1: {}".format(my_list[0], my_list[1])
+            print(output)
+            index = int(input("Enter index number -> "))
+            if index == 0:
+                new_name = input("Enter new name ->")
+                L[0] = new_name
+            # Change pickup to delivery
+            elif index == 1:
+                customer = L[0]
+                L.clear()
+                address = input("Enter address -> ")
+                number = input("Enter phone number -> ")
+                if len(number) < 7:
+                    print("Phone number too short")
+                elif len(number) > 15:
+                    print("Phone number too long")
+                else:
+                    L.append(customer)
+                    L.append(address)
+                    L.append(number)
+                    total = Z[0] + 3
+                    Z[0] = total
+        else:
+            print("Error")
+    elif len(L) == 0:
+        print("No customer details")
     else:
         print("Error")
 
