@@ -181,7 +181,7 @@ def edit_customer_details(L, Z):
         if len(L) == 3:
             details = "Name: {}\nAddress: {}\nPhone Number: {}\nDelivery/Pickup: Delivery".format(L[0], L[1], L[2])
             print(details)
-            output = "0: Name\n1: Address\n2: Phone Number\n3: Change to Pickup"
+            output = "0: Name\n1: Address\n2: Phone Number\n3: Change to Pickup\n4: Back"
             print(output)
             # Get item to edit
             integer = int(input("Index number -> "))
@@ -217,14 +217,16 @@ def edit_customer_details(L, Z):
                 L.append(customer)
                 total = Z[0] - 3
                 Z[0] = total
+            elif integer == 4:
+                print("Main menu:")
             else:
                 print("Error")
         elif len(L) == 1:
             # Print customer details
             customer_details = "Name: {}\nDelivery or Pickup: Pickup".format(L[0])
             print(customer_details)
-            my_list = ["Name", "Change to delivery"]
-            output = "0: {}\n1: {}".format(my_list[0], my_list[1])
+            my_list = ["Name", "Change to delivery", "Back"]
+            output = "0: {}\n1: {}\n2: {}".format(my_list[0], my_list[1], my_list[2])
             print(output)
             index = int(input("Enter index number -> "))
             if index == 0:
@@ -257,6 +259,10 @@ def edit_customer_details(L, Z):
                         L.append(number)
                         total = Z[0] + 3
                         Z[0] = total
+            elif index == 2:
+                print("Main menu:")
+            else:
+                print("Error")
         else:
             print("Error")
     elif len(L) == 0:
