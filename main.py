@@ -24,6 +24,14 @@ def print_order_with_index(L):
 
 
 def add_sandwich(L, O, Z, S):
+    """Add sandwich to order
+
+    :param L: list (menu)
+    :param O: list (order_list)
+    :param Z: float (total cost of the order)
+    :param S: int (total sandwiches ordered)
+    :return: None
+    """
     if S[0] == 5:
         print("5 sandwiches already ordered")
     elif S[0] < 5:
@@ -55,6 +63,13 @@ def add_sandwich(L, O, Z, S):
 
 
 def review_order(L, O, Z):
+    """Review Order
+
+    :param L: list (customer details)
+    :param O: list (order_list)
+    :param Z: float (total cost of the order)
+    :return: None
+    """
     if len(O) >= 1:
         print_order_list(O)
         if len(L) == 3:
@@ -79,6 +94,14 @@ def review_order(L, O, Z):
 
 
 def delete_order(L, O, Z, S):
+    """Delete order
+
+    :param L: list (order_list)
+    :param O: list (customer details)
+    :param Z: float (total cost of the order)
+    :param S: int (total sandwiches ordered)
+    :return: None
+    """
     # Clear customer details and order
     L.clear()
     O.clear()
@@ -140,6 +163,12 @@ def edit_order(L, Z, S):
 
 
 def edit_customer_details(L, Z):
+    """Edit customer details
+
+    :param L: list (customer details)
+    :param Z: float (total cost of the order)
+    :return: None
+    """
     if len(L) > 0:
         if len(L) == 3:
             details = "Name: {}\nAddress: {}\nPhone Number: {}\nDelivery/Pickup: Delivery".format(L[0], L[1], L[2])
@@ -203,6 +232,12 @@ def edit_customer_details(L, Z):
 
 
 def delivery_option(L, Z):
+    """Add customer details
+
+    :param L: list (customer details)
+    :param Z: float (total cost of the order)
+    :return: None
+    """
     if len(L) > 0:
         print("Customer Details already entered")
     elif len(L) == 0:
@@ -236,6 +271,13 @@ def delivery_option(L, Z):
 
 
 def complete_order(L, O, Z):
+    """complete order
+
+    :param L: list (order_list)
+    :param O: list (customer details)
+    :param Z: float (total cost of the order)
+    :return: None
+    """
     if len(L) >= 1:
         if len(O) >= 1:
             review_order(O, L, Z)
