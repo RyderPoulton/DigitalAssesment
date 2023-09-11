@@ -37,33 +37,42 @@ def add_sandwich(L, O, Z, S):
     elif S[0] < 5:
         print("{} sandwiches ordered, {} more can be ordered\n".format(S[0], 5 - S[0]))
         print_with_index(L)
+        exit_number = (len(L))
+        print("{}: Exit".format(exit_number))
         # Get sandwich ordered
         order = int(input("Enter the index number of the sandwich ordered -> "))
-        sandwich = L[order]
-        name = sandwich[0]
-        price = sandwich[1]
-        # Get amount of sandwiches ordered
-        amount = int(input("Amount of sandwiches -> "))
-        if amount > 5:
-            print("Too many sandwiches")
-        elif amount < 1:
-            print("Must order 1 or more sandwiches")
-            # Limit sandwiches ordered to 5
-        elif S[0] + amount > 5:
-            print("There is already {} sandwiches ordered. Max of 5 sandwiches can be ordered.".format(S[0]))
+        if order > len(L):
+            print("Error")
+        elif order < len(L):
+            sandwich = L[order]
+            name = sandwich[0]
+            price = sandwich[1]
+            # Get amount of sandwiches ordered
+            amount = int(input("Amount of sandwiches -> "))
+            if amount > 5:
+                print("Too many sandwiches")
+            elif amount < 1:
+                print("Must order 1 or more sandwiches")
+                # Limit sandwiches ordered to 5
+            elif S[0] + amount > 5:
+                print("There is already {} sandwiches ordered. Max of 5 sandwiches can be ordered.".format(S[0]))
+            else:
+                # Add sandwich to order
+                new_list = [amount, name, price]
+                O.append(new_list)
+                output = "{} {} have been added to the order".format(amount, name)
+                print(output)
+                total = amount * price
+                new_total = Z[0] + total
+                # Round total to 2dp
+                rounded_total = round(new_total, 2)
+                Z[0] = rounded_total
+                a = S[0] + amount
+                S[0] = a
+        elif order == len(L):
+            print("Main menu:")
         else:
-            # Add sandwich to order
-            new_list = [amount, name, price]
-            O.append(new_list)
-            output = "{} {} have been added to the order".format(amount, name)
-            print(output)
-            total = amount * price
-            new_total = Z[0] + total
-            # Round total to 2dp
-            rounded_total = round(new_total, 2)
-            Z[0] = rounded_total
-            a = S[0] + amount
-            S[0] = a
+            print("Error")
 
 
 def review_order(L, O, Z):
