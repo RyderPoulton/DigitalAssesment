@@ -186,19 +186,30 @@ def edit_customer_details(L, Z):
             # Get item to edit
             integer = int(input("Index number -> "))
             if integer == 0:
-                new_name = input("Enter new name -> ")
-                L[0] = new_name
+                run = True
+                while run == True:
+                    new_name = input("Enter new name -> ")
+                    if len(new_name) < 2:
+                        print("Name too short (2 Characters Min)")
+                    elif len(new_name) > 20:
+                        print("Name too long (20 Characters Max)")
+                    else:
+                        run = False
+                        L[0] = new_name
             elif integer == 1:
                 new_address = input("Enter new address -> ")
                 L[1] = new_address
             elif integer == 2:
-                new_number = input("Enter new phone number -> ")
-                if len(new_number) < 7:
-                    print("Phone number too short")
-                elif len(new_number) > 15:
-                    print("Phone number too long")
-                else:
-                    L[2] = new_number
+                run = True
+                while run == True:
+                    new_number = input("Enter new phone number -> ")
+                    if len(new_number) < 7:
+                        print("Phone number too short")
+                    elif len(new_number) > 15:
+                        print("Phone number too long")
+                    else:
+                        run = False
+                        L[2] = new_number
             # Change delivery to pickup
             elif integer == 3:
                 customer = L[0]
@@ -217,24 +228,35 @@ def edit_customer_details(L, Z):
             print(output)
             index = int(input("Enter index number -> "))
             if index == 0:
-                new_name = input("Enter new name ->")
-                L[0] = new_name
+                run = True
+                while run == True:
+                    new_name = input("Enter new name ->")
+                    if len(new_name) < 2:
+                        print("Name too short (2 Characters Min)")
+                    elif len(new_name) > 20:
+                        print("Name too long (20 Characters Max)")
+                    else:
+                        run = False
+                        L[0] = new_name
             # Change pickup to delivery
             elif index == 1:
                 customer = L[0]
                 L.clear()
                 address = input("Enter address -> ")
-                number = input("Enter phone number -> ")
-                if len(number) < 7:
-                    print("Phone number too short")
-                elif len(number) > 15:
-                    print("Phone number too long")
-                else:
-                    L.append(customer)
-                    L.append(address)
-                    L.append(number)
-                    total = Z[0] + 3
-                    Z[0] = total
+                run = True
+                while run == True:
+                    number = input("Enter phone number -> ")
+                    if len(number) < 7:
+                        print("Phone number too short")
+                    elif len(number) > 15:
+                        print("Phone number too long")
+                    else:
+                        run = False
+                        L.append(customer)
+                        L.append(address)
+                        L.append(number)
+                        total = Z[0] + 3
+                        Z[0] = total
         else:
             print("Error")
     elif len(L) == 0:
