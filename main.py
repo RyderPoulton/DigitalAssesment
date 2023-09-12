@@ -148,39 +148,44 @@ def edit_order(L, Z, S):
         print_order_with_index(L)
         # get item to edit
         index = int(input("What would you like to edit -> "))
-        item = L[index]
-        print("There are {} {} ordered".format(item[0], item[1]))
-        # get quantity to remove
-        change = int(input("How many would you like to add/remove (use - to remove) -> "))
-        sandwich_amount = item[0] + change
-        total_amount = S[0] + change
-        # check cases and update where valid
-        if sandwich_amount < 0:
-            print("Negative amounts of sandwiches can not be ordered")
-        elif sandwich_amount == 0:
-            print("{} has been removed from the order".format(item[1]))
-            # remove item from order
-            L.pop(index)
-            total = S[0] + change
-            S[0] = total
-            cost = Z[0] + (item[2] * change)
-            # round cost to 2 decimal places
-            rounded_cost = round(cost, 2)
-            Z[0] = rounded_cost
-        elif total_amount > 5:
-            print("Max of 5 sandwiches can be ordered")
-        elif change <= 5:
-            output = "{} {} have been ordered".format(sandwich_amount, item[1])
-            print(output)
-            new_amount = item[0] + change
-            S[0] = total_amount
-            item[0] = new_amount
-            cost = Z[0] + (item[2] * change)
-            # round cost to 2 decimal places
-            rounded_cost = round(cost, 2)
-            Z[0] = rounded_cost
+        if index > len(L):
+            print("Index out of range")
+        elif index < 0:
+            print("Index out of range")
         else:
-            print("Error")
+            item = L[index]
+            print("There are {} {} ordered".format(item[0], item[1]))
+            # get quantity to remove
+            change = int(input("How many would you like to add/remove (use - to remove) -> "))
+            sandwich_amount = item[0] + change
+            total_amount = S[0] + change
+            # check cases and update where valid
+            if sandwich_amount < 0:
+                print("Negative amounts of sandwiches can not be ordered")
+            elif sandwich_amount == 0:
+                print("{} has been removed from the order".format(item[1]))
+                # remove item from order
+                L.pop(index)
+                total = S[0] + change
+                S[0] = total
+                cost = Z[0] + (item[2] * change)
+                # round cost to 2 decimal places
+                rounded_cost = round(cost, 2)
+                Z[0] = rounded_cost
+            elif total_amount > 5:
+                print("Max of 5 sandwiches can be ordered")
+            elif change <= 5:
+                output = "{} {} have been ordered".format(sandwich_amount, item[1])
+                print(output)
+                new_amount = item[0] + change
+                S[0] = total_amount
+                item[0] = new_amount
+                cost = Z[0] + (item[2] * change)
+                # round cost to 2 decimal places
+                rounded_cost = round(cost, 2)
+                Z[0] = rounded_cost
+            else:
+                print("Error")
     elif len(L) == 0:
         print("There is nothing in the order")
     else:
