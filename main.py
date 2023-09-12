@@ -119,13 +119,21 @@ def delete_order(L, O, Z, S):
     :param S: int (total sandwiches ordered)
     :return: None
     """
-    # Clear customer details and order
-    L.clear()
-    O.clear()
-    # Set total cost to 0
-    Z[0] = 0
-    # Set total sandwiches ordered to 0
-    S[0] = 0
+    # Check if they want to delete order
+    letter = input("Are you sure you would like to delete the order y/n -> ").lower()
+    if letter == "y":
+        # Clear customer details and order
+        L.clear()
+        O.clear()
+        # Set total cost to 0
+        Z[0] = 0
+        # Set total sandwiches ordered to 0
+        S[0] = 0
+        print("Order deleted\nStart new order:")
+    elif letter == "n":
+        print("Order not deleted\nMain menu:")
+    else:
+        print("Error")
 
 
 def edit_order(L, Z, S):
@@ -408,8 +416,6 @@ def menu():
             # Delete order
         elif choice == "D":
             delete_order(order_list, delivery_list, total, total_sandwiches)
-            print("Order deleted\n"
-                  "Start new order:")
             # Edit order
         elif choice == "E":
             edit_order(order_list, total, total_sandwiches)
